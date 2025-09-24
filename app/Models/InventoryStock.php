@@ -9,15 +9,14 @@ class InventoryStock extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    protected $table = 'inventory_stock';
+
+    const UPDATED_AT = 'updated_at';
+    const CREATED_AT = null;
 
     protected $fillable = [
         'item_type_id',
         'current_stock',
-    ];
-
-    protected $casts = [
-        'updated_at' => 'datetime',
     ];
 
     public function itemType()

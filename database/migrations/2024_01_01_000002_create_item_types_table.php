@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('item_types', function (Blueprint $table) {
@@ -19,14 +16,10 @@ return new class extends Migration
             $table->enum('unit', ['Pcs', 'Unit', 'Rim', 'Box', 'Pack', 'Set', 'Roll', 'Liter', 'Kg']);
             $table->integer('min_stock')->default(5);
             $table->boolean('is_active')->default(true);
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('item_types');

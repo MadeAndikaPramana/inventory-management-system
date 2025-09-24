@@ -1,66 +1,159 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Inventory Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A comprehensive inventory management system built with Laravel 10+ featuring real-time stock tracking, request processing, vendor management, and PDF document generation.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Core Functionality
+- **User Authentication**: Session-based login system with seeded users
+- **Category Management**: Organize items by categories with full CRUD operations
+- **Item Type Management**: Manage inventory items with stock integration
+- **Real-time Stock Tracking**: Live stock availability checking with color-coded status
+- **Request Processing**: Complete request workflow with automatic stock allocation
+- **Purchase Order Management**: Vendor procurement with PO generation
+- **Document Generation**: Professional PDF documents (Nota Dinas, BAPBJ)
+- **Stock Movement Tracking**: Complete audit trail of all stock changes
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Technical Features
+- **Responsive Design**: Tailwind CSS with Alpine.js for interactive components
+- **PDF Generation**: Professional Indonesian government document templates
+- **Export Functionality**: CSV exports for stock reports and movements
+- **Search & Filtering**: Advanced filtering across all listing pages
+- **Pagination**: Efficient handling of large datasets
+- **Real-time Alerts**: Low stock notifications and status updates
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Database Structure
 
-## Learning Laravel
+The system uses 11 core tables with proper relationships:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **users** - System users with role-based access
+2. **categories** - Item categorization
+3. **item_types** - Individual inventory items
+4. **vendors** - Supplier information
+5. **requests** - Internal item requests
+6. **request_items** - Individual items within requests
+7. **inventory_stock** - Current stock levels
+8. **stock_movements** - Complete movement history
+9. **purchase_orders** - Vendor purchase orders
+10. **purchase_order_items** - Items within purchase orders
+11. **generated_documents** - PDF document tracking
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Prerequisites
+- PHP 8.1 or higher
+- Composer
+- Node.js & npm
+- MySQL (XAMPP recommended)
 
-## Laravel Sponsors
+### Setup Instructions
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. **Clone or setup the project**
+   ```bash
+   cd inventory-management-system
+   ```
 
-### Premium Partners
+2. **Run the setup script (Linux/Mac)**
+   ```bash
+   chmod +x setup.sh
+   ./setup.sh
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+3. **Manual setup (Windows or alternative)**
+   ```bash
+   # Install dependencies
+   composer install
+   npm install
 
-## Contributing
+   # Setup environment
+   cp .env.example .env
+   php artisan key:generate
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+   # Create database 'inventory_management' in MySQL
+   # Update .env with your database credentials
 
-## Code of Conduct
+   # Run migrations and seeders
+   php artisan migrate
+   php artisan db:seed
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   # Build assets
+   npm run build
 
-## Security Vulnerabilities
+   # Create storage directories
+   mkdir -p storage/app/documents/nota-dinas
+   mkdir -p storage/app/documents/bapbj
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. **Start the application**
+   ```bash
+   php artisan serve
+   ```
 
-## License
+5. **Access the system**
+   - URL: http://localhost:8000
+   - Default login: `admin` / `admin123`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Default User Accounts
+
+| Username | Password | Description |
+|----------|----------|-------------|
+| admin | admin123 | System administrator |
+| warehouse | warehouse123 | Warehouse staff |
+| procurement | procurement123 | Procurement staff |
+
+## System Modules
+
+### 1. Dashboard
+- Real-time statistics and metrics
+- Recent requests overview
+- Low stock alerts
+- Quick action buttons
+- Stock movement history
+
+### 2. Inventory Management
+- **Categories**: Organize items (ATK, Electronics, Furniture, etc.)
+- **Item Types**: 40+ pre-seeded items with realistic data
+- **Stock Tracking**: Real-time availability with min stock alerts
+- **Stock Adjustments**: Manual stock updates with audit trail
+
+### 3. Request Management
+- **Create Requests**: Multi-item requests with real-time stock checking
+- **Process Requests**: Automatic stock allocation and fulfillment
+- **Status Tracking**: Draft → Submitted → Completed workflow
+- **Partial Fulfillment**: Handle cases where full quantity isn't available
+
+### 4. Warehouse Operations
+- **Stock Overview**: Current inventory with search/filtering
+- **Stock Adjustments**: In/Out/Adjustment operations
+- **Movement History**: Complete audit trail
+- **Low Stock Alerts**: Automated notifications
+- **Export Reports**: CSV exports for analysis
+
+### 5. Procurement
+- **Vendor Management**: Complete vendor database
+- **Purchase Orders**: PO creation and management
+- **Order Tracking**: Draft → Sent → Completed workflow
+- **Integration**: Links to request fulfillment needs
+
+### 6. Document Generation
+- **Nota Dinas Internal**: Professional internal memos
+- **BAPBJ**: Goods receipt documentation
+- **Auto-numbering**: Sequential document numbering
+- **PDF Storage**: Organized file management
+- **Download/Archive**: Complete document history
+
+## Sample Data
+
+The system includes comprehensive sample data:
+- **8 Categories** (ATK, Electronics, Furniture, etc.)
+- **40+ Item Types** with realistic Indonesian office supplies
+- **6 Vendors** with complete contact information
+- **15 Sample Requests** with various statuses
+- **10 Purchase Orders** demonstrating procurement flow
+- **Realistic Stock Levels** including low-stock scenarios
+
+---
+
+**System Status**: Production Ready ✅
+**Last Updated**: January 2024
+**Version**: 1.0.0

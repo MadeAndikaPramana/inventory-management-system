@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fix zoom and scaling issues */
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    zoom: 1; /* Force normal zoom */
+    transform: scale(1); /* Ensure no scaling transforms */
+}
+
+body {
+    font-size: 1rem;
+    line-height: 1.5;
+    overflow-x: hidden;
+    zoom: 1; /* Force normal zoom */
+    transform: scale(1); /* Ensure no scaling transforms */
+    width: 100vw;
+    max-width: 100vw;
+}
+
+/* Ensure proper responsive behavior */
+* {
+    box-sizing: border-box;
+}
+
+/* Fix potential sidebar overflow issues */
+.sidebar-container {
+    width: 16rem; /* 64 in Tailwind = 16rem */
+    flex-shrink: 0;
+}
+
+/* Ensure main content doesn't overflow */
+.main-content {
+    min-width: 0;
+    flex: 1;
+    width: 100%;
+    max-width: calc(100vw - 16rem); /* Account for sidebar width */
+}
+
+/* Additional layout fixes */
+.min-h-screen {
+    min-height: 100vh;
+    width: 100vw;
+    max-width: 100vw;
+    position: relative;
+}
+
+/* Ensure containers are properly sized */
+.max-w-7xl {
+    max-width: min(80rem, calc(100vw - 2rem));
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 1024px) {
+    .main-content {
+        max-width: 100vw;
+        width: 100vw;
+    }
+
+    .sidebar-container {
+        z-index: 40;
+    }
+}
+
+@layer components {
+    .btn {
+        @apply px-4 py-2 rounded-md font-medium transition-colors duration-200;
+    }
+
+    .btn-primary {
+        @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    }
+
+    .btn-secondary {
+        @apply bg-gray-600 text-white hover:bg-gray-700 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+    }
+
+    .btn-danger {
+        @apply bg-red-600 text-white hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2;
+    }
+
+    .btn-success {
+        @apply bg-green-600 text-white hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2;
+    }
+
+    .btn-warning {
+        @apply bg-yellow-600 text-white hover:bg-yellow-700 focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2;
+    }
+
+    .card {
+        @apply bg-white rounded-lg shadow-md overflow-hidden;
+    }
+
+    .card-header {
+        @apply px-6 py-4 border-b border-gray-200 bg-gray-50;
+    }
+
+    .card-body {
+        @apply px-6 py-4;
+    }
+
+    .form-group {
+        @apply mb-4;
+    }
+
+    .form-label {
+        @apply block text-sm font-medium text-gray-700 mb-2;
+    }
+
+    .form-input {
+        @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500;
+    }
+
+    .form-select {
+        @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500;
+    }
+
+    .form-textarea {
+        @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 resize-vertical;
+    }
+
+    .table {
+        @apply w-full divide-y divide-gray-200;
+    }
+
+    .table-header {
+        @apply bg-gray-50;
+    }
+
+    .table-header-cell {
+        @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+    }
+
+    .table-body {
+        @apply bg-white divide-y divide-gray-200;
+    }
+
+    .table-cell {
+        @apply px-6 py-4 whitespace-nowrap text-sm text-gray-900;
+    }
+
+    .badge {
+        @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    }
+
+    .badge-success {
+        @apply bg-green-100 text-green-800;
+    }
+
+    .badge-warning {
+        @apply bg-yellow-100 text-yellow-800;
+    }
+
+    .badge-danger {
+        @apply bg-red-100 text-red-800;
+    }
+
+    .badge-info {
+        @apply bg-blue-100 text-blue-800;
+    }
+
+    .badge-secondary {
+        @apply bg-gray-100 text-gray-800;
+    }
+
+    .sidebar-link {
+        @apply flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors duration-200;
+    }
+
+    .sidebar-link.active {
+        @apply bg-blue-50 text-blue-600 border-r-2 border-blue-600;
+    }
+
+    .alert {
+        @apply p-4 rounded-md mb-4;
+    }
+
+    .alert-success {
+        @apply bg-green-50 border border-green-200 text-green-800;
+    }
+
+    .alert-error {
+        @apply bg-red-50 border border-red-200 text-red-800;
+    }
+
+    .alert-warning {
+        @apply bg-yellow-50 border border-yellow-200 text-yellow-800;
+    }
+
+    .alert-info {
+        @apply bg-blue-50 border border-blue-200 text-blue-800;
+    }
+}
