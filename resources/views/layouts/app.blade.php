@@ -10,9 +10,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 font-sans antialiased">
-    <div class="min-h-screen flex">
+    <div class="min-h-screen flex" x-data="{ sidebarOpen: false }">
         <!-- Sidebar -->
-        <div class="sidebar-container fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:inset-0 z-30" x-data="{ open: false }" :class="{ 'translate-x-0': open }">
+        <div class="sidebar-container fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:inset-0 z-30" :class="{ 'translate-x-0': sidebarOpen }">
             <div class="flex items-center justify-center h-16 bg-blue-600">
                 <h1 class="text-white text-xl font-bold">IMS</h1>
             </div>
@@ -101,7 +101,7 @@
         </div>
 
         <!-- Mobile menu overlay -->
-        <div class="fixed inset-0 bg-gray-600 bg-opacity-75 z-20 lg:hidden" x-show="open" @click="open = false" x-cloak></div>
+        <div class="fixed inset-0 bg-gray-600 bg-opacity-75 z-20 lg:hidden" x-show="sidebarOpen" @click="sidebarOpen = false" x-cloak></div>
 
         <!-- Main content -->
         <div class="main-content flex-1 lg:ml-0">
@@ -110,7 +110,7 @@
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between items-center py-4">
                         <div class="flex items-center">
-                            <button @click="open = !open" class="text-gray-500 focus:outline-none focus:text-gray-700 lg:hidden">
+                            <button @click="sidebarOpen = !sidebarOpen" class="text-gray-500 focus:outline-none focus:text-gray-700 lg:hidden">
                                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                                 </svg>
